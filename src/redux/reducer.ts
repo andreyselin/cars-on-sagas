@@ -1,19 +1,24 @@
 import { actionTypes, states } from "./const";
-import { IGetManufacturerInfo, IListManufacturers, isOfType } from "./types";
+import {
+    IGetManufacturerRequest,   IGetManufacturerCommit,
+    IListManufacturersRequest, IListManufacturersCommit,
+
+    isOfType, IState } from "./types";
 
 
-const defaultState = {
+export const defaultState: IState = {
     manufacturer: {
         state: states.initial,
         manufacturer: null
     },
     manufacturersList: {
         state: states.initial,
-        items: []
+        items: [ ]
     }
 };
 
-export const commonReducer = (previousState = defaultState, action: any) => {
+
+export const rootReducer = (previousState = defaultState, action: any) => {
 
 
 
@@ -25,7 +30,7 @@ export const commonReducer = (previousState = defaultState, action: any) => {
 
 
 
-    if (isOfType<IGetManufacturerInfo.Request>(action, actionTypes.request.getManufacturerInfo)) {
+    if (isOfType<IGetManufacturerRequest>(action, actionTypes.request.getManufacturer)) {
         return {
             ...previousState,
             manufacturer: {
@@ -34,7 +39,7 @@ export const commonReducer = (previousState = defaultState, action: any) => {
             }
         }
     }
-    else if (isOfType<IGetManufacturerInfo.Commit>(action, actionTypes.commit.getManufacturerInfo)) {
+    else if (isOfType<IGetManufacturerCommit>(action, actionTypes.commit.getManufacturer)) {
         return {
             ...previousState,
             manufacturer: {
@@ -54,13 +59,13 @@ export const commonReducer = (previousState = defaultState, action: any) => {
 
 
 
-    else if (isOfType<IListManufacturers.Request>(action, actionTypes.request.listManufacturers)) {
+    else if (isOfType<IListManufacturersRequest>(action, actionTypes.request.listManufacturers)) {
     // if (action.type === actionTypes.request.listManufacturers) {
         return {
             ...previousState
         }
     }
-    else if (isOfType<IListManufacturers.Commit>(action, actionTypes.commit.listManufacturers)) {
+    else if (isOfType<IListManufacturersCommit>(action, actionTypes.commit.listManufacturers)) {
         return {
             ...previousState
         }

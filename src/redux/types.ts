@@ -1,7 +1,9 @@
 // Common types
 
 
-export type TState = 'initial' | 'loading' | 'error' | 'ready';
+import {states} from "./const";
+
+export type TComponentState = 'initial' | 'loading' | 'error' | 'ready';
 
 
 // Redux types
@@ -19,28 +21,52 @@ export const isOfType = <T extends IAction>(
 
 
 
-export interface IManufacturer {
-    //
+export type IManufacturer = number;
+
+
+
+    /////////////////
+    //             //
+    //   Actions   //
+    //             //
+    /////////////////
+
+
+
+export interface IGetManufacturerRequest extends IAction {
+    id: number;
+}
+export interface IListManufacturersRequest extends IAction {
+    page: number;
 }
 
 
-export namespace IGetManufacturerInfo {
-    export interface Request extends IAction {
-        id: string;
-    }
-    export interface Commit extends IAction {
-        state: TState;
-        manufacturer: IManufacturer;
-    }
+export interface IListManufacturersCommit extends IAction {
+    state: TComponentState;
+    items: IManufacturer[];
+}
+export interface IGetManufacturerCommit extends IAction {
+    state: TComponentState;
+    manufacturer: IManufacturer;
 }
 
 
-export namespace IListManufacturers {
-    export interface Request extends IAction {
-        page: number;
-    }
-    export interface Commit extends IAction {
-        state: TState;
-        manufacturers: IManufacturer[];
+
+    ///////////////
+    //           //
+    //   State   //
+    //           //
+    ///////////////
+
+
+
+export interface IState {
+    manufacturer: {
+        state: TComponentState,
+        manufacturer: null | IManufacturer
+    },
+    manufacturersList: {
+        state: TComponentState,
+        items: IManufacturer[]
     }
 }

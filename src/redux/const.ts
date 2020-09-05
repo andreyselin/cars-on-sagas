@@ -1,19 +1,19 @@
-import { TState } from "./types";
+import { TComponentState } from "./types";
+
 
 export const actionTypes = {
     request: {
-        listManufacturers:   'request.listManufacturers',
-        getManufacturerInfo: 'request.getManufacturerInfo',
+        listManufacturers: 'request.listManufacturers',
+        getManufacturer:   'request.getManufacturerInfo',
     },
     commit: {
-        listManufacturers:   'commit.listManufacturers',
-        getManufacturerInfo: 'commit.getManufacturerInfo',
+        listManufacturers: 'commit.listManufacturers',
+        getManufacturer:   'commit.getManufacturerInfo',
     }
-
 };
 
 
-export const states: { [key in TState]: key } = {
+export const states: { [key in TComponentState]: key } = {
     initial: 'initial',
     loading: 'loading',
     error:   'error',

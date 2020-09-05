@@ -19,10 +19,9 @@ function *requestManufacturersList () {
         page++;
         const result = yield call(api.listManufacturers, { page });
         yield put({
-            type: actionTypes.commit.getManufacturerInfo,
+            type: actionTypes.commit.getManufacturer,
             payload: result
         });
-        console.log('--44--', result);
     }
 }
 
