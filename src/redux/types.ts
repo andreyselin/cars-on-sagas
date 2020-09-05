@@ -43,7 +43,7 @@ export interface IListManufacturersRequest extends IAction {
 
 export interface IListManufacturersCommit extends IAction {
     state: TComponentState;
-    items: IManufacturer[];
+    manufacturers: IManufacturer[];
 }
 export interface IGetManufacturerCommit extends IAction {
     state: TComponentState;
@@ -67,6 +67,6 @@ export interface IState {
     },
     manufacturersList: {
         state: TComponentState,
-        items: IManufacturer[]
+        manufacturers: IManufacturer[]
     }
 }

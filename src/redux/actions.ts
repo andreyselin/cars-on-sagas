@@ -25,10 +25,10 @@ const commit: {
     listManufacturers: (state: TComponentState, items: IManufacturer[]) => IListManufacturersCommit,
     getManufacturer:   (state: TComponentState, manufacturer: IManufacturer) => IGetManufacturerCommit,
 } = {
-    listManufacturers: (state, items) => ({
+    listManufacturers: (state, manufacturers) => ({
         type: actionTypes.commit.listManufacturers,
         state,
-        items
+        manufacturers
     }),
     getManufacturer: (state, manufacturer) => ({
         type: actionTypes.commit.getManufacturer,

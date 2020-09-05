@@ -3,7 +3,8 @@ import {
     IGetManufacturerRequest,   IGetManufacturerCommit,
     IListManufacturersRequest, IListManufacturersCommit,
 
-    isOfType, IState } from "./types";
+    isOfType, IState
+} from "./types";
 
 
 export const defaultState: IState = {
@@ -13,41 +14,12 @@ export const defaultState: IState = {
     },
     manufacturersList: {
         state: states.initial,
-        items: [ ]
+        manufacturers: [ ]
     }
 };
 
 
 export const rootReducer = (previousState = defaultState, action: any) => {
-
-
-
-    ///////////////////////////
-    //                       //
-    //  Manufacturer's page  //
-    //                       //
-    ///////////////////////////
-
-
-
-    if (isOfType<IGetManufacturerRequest>(action, actionTypes.request.getManufacturer)) {
-        return {
-            ...previousState,
-            manufacturer: {
-                ...previousState.manufacturer,
-                state: states.loading
-            }
-        }
-    }
-    else if (isOfType<IGetManufacturerCommit>(action, actionTypes.commit.getManufacturer)) {
-        return {
-            ...previousState,
-            manufacturer: {
-                manufacturer: action.manufacturer,
-                state: states.ready
-            }
-        }
-    }
 
 
 
@@ -59,17 +31,54 @@ export const rootReducer = (previousState = defaultState, action: any) => {
 
 
 
-    else if (isOfType<IListManufacturersRequest>(action, actionTypes.request.listManufacturers)) {
-    // if (action.type === actionTypes.request.listManufacturers) {
+    if (isOfType<IListManufacturersRequest>(action, actionTypes.request.listManufacturers)) {
         return {
             ...previousState
+
         }
     }
-    else if (isOfType<IListManufacturersCommit>(action, actionTypes.commit.listManufacturers)) {
+    if (isOfType<IListManufacturersCommit>(action, actionTypes.commit.listManufacturers)) {
+
         return {
-            ...previousState
+            ...previousState,
+            manufacturersList: {
+                ...previousState.manufacturersList,
+                manufacturers: action.manufacturers
+            }
         }
     }
+
+
+
+
+    ///////////////////////////
+    //                       //
+    //  Manufacturer's page  //
+    //                       //
+    ///////////////////////////
+
+
+
+/*
+    if (isOfType<IGetManufacturerRequest>(action, actionTypes.request.getManufacturer)) {
+        return {
+            ...previousState,
+            manufacturer: {
+                ...previousState.manufacturer,
+                state: states.loading
+            }
+        }
+    }
+    if (isOfType<IGetManufacturerCommit>(action, actionTypes.commit.getManufacturer)) {
+        return {
+            ...previousState,
+            manufacturer: {
+                manufacturer: action.manufacturer,
+                state: states.ready
+            }
+        }
+    }
+*/
 
 
 

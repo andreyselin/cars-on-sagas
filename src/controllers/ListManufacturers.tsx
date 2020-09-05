@@ -13,12 +13,12 @@ interface _IOwnProps extends RouteComponentProps {
 
 export const ListManufacturers = (props: _IOwnProps) => {
 
-    const state = useSelector((state: IState) => state.manufacturersList);
+    const { manufacturers } = useSelector((state: IState) => state.manufacturersList);
     const dispatch = useDispatch();
 
-
-
-    const loadFunc = (page: number) => dispatch(actions.request.getManufacturer(page));
+    const loadFunc = (page: number) => {
+        dispatch(actions.request.listManufacturers(page))
+    };
 
     return (<>
         <div style={{ height: '100%', overflow: 'auto' }}>
@@ -29,7 +29,7 @@ export const ListManufacturers = (props: _IOwnProps) => {
                 loader={<div className="loader" key={0}>Loading ...</div>}
                 useWindow={false}
             >
-                { state.items.map(el=>(<div key={ el }>{ el }</div>)) }
+                { manufacturers.map(el=>(<div key={ el }>{ el }</div>)) }
             </InfiniteScroll>
         </div>
     </>);

@@ -4,11 +4,20 @@ import { Router } from "@reach/router";
 import { ListManufacturers } from "./controllers/ListManufacturers";
 import { Manufacturer } from "./controllers/Manufacturer";
 import { Provider } from 'react-redux';
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from 'redux-saga';
 import { rootReducer } from "./redux/reducer";
+import { rootSaga } from './redux/sagas';
 
-const store = createStore(rootReducer);
 
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(
+    rootReducer,
+    applyMiddleware(sagaMiddleware)
+);
+
+sagaMiddleware.run(rootSaga);
 
 function App() {
   return (
