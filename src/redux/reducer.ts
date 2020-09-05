@@ -1,5 +1,5 @@
 import { actionTypes, states } from "./const";
-import {IAction, IGetManufacturerInfo, IListManufacturers, isOfType} from "./types";
+import { IGetManufacturerInfo, IListManufacturers, isOfType } from "./types";
 
 
 const defaultState = {
@@ -12,9 +12,6 @@ const defaultState = {
         items: []
     }
 };
-
-type A = { type: string } & any;
-var a:A = { type: 1, s: 2 };
 
 export const commonReducer = (previousState = defaultState, action: any) => {
 
