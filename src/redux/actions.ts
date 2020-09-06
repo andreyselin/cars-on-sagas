@@ -1,7 +1,7 @@
 import {
     IGetManufacturerCommit,
     IGetManufacturerRequest, IListManufacturersCommit, IListManufacturersRequest,
-    IManufacturer, TComponentState
+    IManufacturer, IManufacturerWithMakes
 } from "./types";
 
 import { actionTypes } from "./const";
@@ -22,17 +22,15 @@ const request: {
 };
 
 const commit: {
-    listManufacturers: (state: TComponentState, items: IManufacturer[]) => IListManufacturersCommit,
-    getManufacturer:   (state: TComponentState, manufacturer: IManufacturer) => IGetManufacturerCommit,
+    listManufacturers: (items: IManufacturer[]) => IListManufacturersCommit,
+    getManufacturer:   (manufacturer: IManufacturerWithMakes) => IGetManufacturerCommit,
 } = {
-    listManufacturers: (state, manufacturers) => ({
+    listManufacturers: (manufacturers) => ({
         type: actionTypes.commit.listManufacturers,
-        state,
         manufacturers
     }),
-    getManufacturer: (state, manufacturer) => ({
+    getManufacturer: (manufacturer) => ({
         type: actionTypes.commit.getManufacturer,
-        state,
         manufacturer
     })
 };

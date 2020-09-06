@@ -1,10 +1,19 @@
-// Common types
+
+    ////////////////////
+    //                //
+    //  Common types  //
+    //                //
+    ////////////////////
 
 
-export type TComponentState = 'initial' | 'loading' | 'error' | 'ready';
+// No any yet
 
 
-// Redux types
+    ///////////////////
+    //               //
+    //  Redux types  //
+    //               //
+    ///////////////////
 
 
 export interface IAction {
@@ -19,11 +28,23 @@ export const isOfType = <T extends IAction>(
 
 
 
-export type IManufacturer = {
+export interface IManufacturer {
     Mfr_ID:   number;
     Mfr_Name: string;
     Country:  string;
-};
+}
+
+
+export interface IManufacturerWithMakes extends IManufacturer {
+    makesWithModels: IMakeWithModel[]
+}
+
+export interface IMake {
+    Make_ID    : number;
+}
+
+export interface IMakeWithModel extends IMake {
+}
 
 
 
@@ -44,12 +65,10 @@ export interface IListManufacturersRequest extends IAction {
 
 
 export interface IListManufacturersCommit extends IAction {
-    state: TComponentState;
     manufacturers: IManufacturer[];
 }
 export interface IGetManufacturerCommit extends IAction {
-    state: TComponentState;
-    manufacturer: IManufacturer;
+    manufacturer: IManufacturerWithMakes
 }
 
 
@@ -64,11 +83,9 @@ export interface IGetManufacturerCommit extends IAction {
 
 export interface IState {
     manufacturer: {
-        state: TComponentState,
-        manufacturer: null | IManufacturer
+        manufacturer: null | IManufacturerWithMakes
     },
     manufacturersList: {
-        state: TComponentState,
         manufacturers: IManufacturer[]
     }
 }

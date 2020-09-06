@@ -1,19 +1,16 @@
-import { actionTypes, states } from "./const";
+import { actionTypes } from "./const";
 import {
-    IGetManufacturerRequest,   IGetManufacturerCommit,
-    IListManufacturersRequest, IListManufacturersCommit,
-
+    IGetManufacturerCommit,
+    IListManufacturersCommit,
     isOfType, IState
 } from "./types";
 
 
 export const defaultState: IState = {
     manufacturer: {
-        state: states.initial,
         manufacturer: null
     },
     manufacturersList: {
-        state: states.initial,
         manufacturers: [ ]
     }
 };
@@ -31,14 +28,7 @@ export const rootReducer = (previousState = defaultState, action: any) => {
 
 
 
-    if (isOfType<IListManufacturersRequest>(action, actionTypes.request.listManufacturers)) {
-        return {
-            ...previousState
-
-        }
-    }
     if (isOfType<IListManufacturersCommit>(action, actionTypes.commit.listManufacturers)) {
-
         return {
             ...previousState,
             manufacturersList: {
@@ -62,26 +52,14 @@ export const rootReducer = (previousState = defaultState, action: any) => {
 
 
 
-/*
-    if (isOfType<IGetManufacturerRequest>(action, actionTypes.request.getManufacturer)) {
-        return {
-            ...previousState,
-            manufacturer: {
-                ...previousState.manufacturer,
-                state: states.loading
-            }
-        }
-    }
     if (isOfType<IGetManufacturerCommit>(action, actionTypes.commit.getManufacturer)) {
         return {
             ...previousState,
             manufacturer: {
-                manufacturer: action.manufacturer,
-                state: states.ready
+                manufacturer: action.manufacturer
             }
         }
     }
-*/
 
 
 

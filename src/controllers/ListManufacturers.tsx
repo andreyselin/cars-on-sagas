@@ -1,7 +1,7 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import styled from 'styled-components';
-import { RouteComponentProps } from "@reach/router";
+import {Link, RouteComponentProps} from "@reach/router";
 import { useDispatch } from "react-redux";
 import { IState } from "../redux/types";
 import { useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ interface _IOwnProps extends RouteComponentProps {
     path: string
 }
 
-const ListItem = styled.div`
+const ListItem = styled(Link)`
     display: flex;
     align-items: center;
     padding: 5px 0;
@@ -50,7 +50,7 @@ export const ListManufacturers = (props: _IOwnProps) => {
                 loader={<div className="loader" key={0}>Loading ...</div>}
                 useWindow={true}
             >
-                { manufacturers.map((el, index)=>(<ListItem key={ index }>
+                { manufacturers.map((el, index)=>(<ListItem to={`/manufacturer/${ el.Mfr_ID }`} key={ index }>
                     <ListItemID>{ el.Mfr_ID }</ListItemID>
                     <ListItemName>{ el.Mfr_Name }</ListItemName>
                     <ListItemCountry>{ el.Country }</ListItemCountry>
