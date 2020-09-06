@@ -41,9 +41,15 @@ export interface IManufacturerWithMakes extends IManufacturer {
 
 export interface IMake {
     Make_ID    : number;
+    Make_Name  : string;
+}
+
+export interface IModel {
+    Model_Name: string;
 }
 
 export interface IMakeWithModel extends IMake {
+    models: IModel []
 }
 
 
