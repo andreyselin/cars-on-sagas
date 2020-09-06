@@ -1,8 +1,6 @@
 // Common types
 
 
-import {states} from "./const";
-
 export type TComponentState = 'initial' | 'loading' | 'error' | 'ready';
 
 
@@ -21,7 +19,11 @@ export const isOfType = <T extends IAction>(
 
 
 
-export type IManufacturer = number;
+export type IManufacturer = {
+    Mfr_ID:   number;
+    Mfr_Name: string;
+    Country:  string;
+};
 
 
 

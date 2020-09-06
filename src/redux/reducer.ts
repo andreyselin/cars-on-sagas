@@ -43,7 +43,10 @@ export const rootReducer = (previousState = defaultState, action: any) => {
             ...previousState,
             manufacturersList: {
                 ...previousState.manufacturersList,
-                manufacturers: action.manufacturers
+                manufacturers: [
+                    ...previousState.manufacturersList.manufacturers,
+                    ...action.manufacturers
+                ]
             }
         }
     }

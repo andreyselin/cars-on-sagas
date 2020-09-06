@@ -1,8 +1,7 @@
-import { takeLatest, call, put, take } from 'redux-saga/effects';
+import { takeLatest, call, put } from 'redux-saga/effects';
 import { actionTypes } from "./const";
 import { api } from "./api";
-import {IListManufacturersRequest} from "./types";
-import {delay} from "q";
+import { IListManufacturersRequest } from "./types";
 
 
 
@@ -15,26 +14,11 @@ import {delay} from "q";
 
 function *requestManufacturersList ({ page }: IListManufacturersRequest) {
 
-    // const result = yield call(api.listManufacturers, { page });
-    yield delay(2000);
+    const result = yield call(api.listManufacturers, { page });
     yield put({
         type: actionTypes.commit.listManufacturers,
-        manufacturers: [ 1,2,3,4,90 ]
+        manufacturers: result.data.Results
     });
-
-    /*
-    let page = 0;
-    let finished = false;
-
-    while (!finished) {
-        page++;
-        const result = yield call(api.listManufacturers, { page });
-        yield put({
-            type: actionTypes.commit.getManufacturer,
-            payload: result
-        });
-    }
-    */
 }
 
 
