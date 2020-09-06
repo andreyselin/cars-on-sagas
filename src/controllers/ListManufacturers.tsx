@@ -11,12 +11,11 @@ interface _IOwnProps extends RouteComponentProps {
     path: string
 }
 
-const ListItem = styled(Link)`
+const ListItem = styled.div`
     display: flex;
     align-items: center;
     padding: 5px 0;
     border-bottom: 1px solid #00000020;
-    cursor: pointer;
     &:hover {
         background: #00000010;
     }
@@ -31,7 +30,22 @@ const ListItemName = styled.div`
     width: 60%;
 `;
 const ListItemCountry = styled.div`
-    width: 30%;
+    width: 20%;
+`;
+const ListItemButtonContainer = styled.div`
+    width: 10%;
+    padding: 5px;
+`;
+const ListItemButton = styled(Link)`
+    padding: 5px 8px;
+    color: white;
+    cursor: pointer;
+    background: green;
+    text-decoration: none;
+    border-radius: 8px;
+    &:hover {
+        background: #50b550;
+    }
 `;
 
 export const ListManufacturers = (props: _IOwnProps) => {
@@ -50,10 +64,13 @@ export const ListManufacturers = (props: _IOwnProps) => {
                 loader={<div className="loader" key={0}>Loading ...</div>}
                 useWindow={true}
             >
-                { manufacturers.map((el, index)=>(<ListItem to={`/manufacturer/${ el.Mfr_ID }`} key={ index }>
+                { manufacturers.map((el, index)=>(<ListItem key={ index }>
                     <ListItemID>{ el.Mfr_ID }</ListItemID>
                     <ListItemName>{ el.Mfr_Name }</ListItemName>
                     <ListItemCountry>{ el.Country }</ListItemCountry>
+                    <ListItemButtonContainer>
+                        <ListItemButton to={`/manufacturer/${ el.Mfr_ID }`} >View details &rarr;</ListItemButton>
+                    </ListItemButtonContainer>
                 </ListItem>)) }
             </InfiniteScroll>
         </div>
