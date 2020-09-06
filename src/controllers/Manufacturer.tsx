@@ -43,7 +43,7 @@ export const Manufacturer = (props: ManufacturerProps) => {
 
     useEffect(() => {
         props.mId && dispatch(actions.request.getManufacturer(props.mId));
-    }, [ props.mId ]);
+    }, [ props.mId, dispatch ]);
 
     console.log('==>', manufacturer);
 
